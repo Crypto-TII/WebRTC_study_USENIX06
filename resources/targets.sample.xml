@@ -1,0 +1,6 @@
+<configList> 
+    <targetConfigList>
+        <targetName>MANUAL</targetName>
+        <browsers>CHROME</browsers>
+    </targetConfigList>
+</configList>

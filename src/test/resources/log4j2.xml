@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ExtendedPatternLayout pattern="%highlight{%-5level: %c{1} - %msg%n%throwable}"/>
+        </Console>
+        <Console name="Info" target="SYSTEM_OUT">
+            <ExtendedPatternLayout pattern="%highlight{%d{HH:mm:ss}{GMT+0} [%t] %-5level: %c{1}} - %msg%n%highlight{%throwable}"/>
+        </Console>
+        <Console name="Direct" target="SYSTEM_OUT">
+            <ExtendedPatternLayout pattern="%highlight{%msg}%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="Direct" level="INFO" additivity="false">
+            <AppenderRef ref="Direct"/>
+        </Logger> 
+        <Logger name="de.rub.nds.tlsattacker" level="INFO" additivity="false">
+            <AppenderRef ref="Info"/>
+        </Logger>
+        <Logger name="de.rub.nds.dtlsproxy" level="DEBUG" additivity="false">
+            <AppenderRef ref="Info"/>
+        </Logger>
+        <Logger name="DirectLogger" level="OFF" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+		<Logger name="org.openqa.selenium" level="WARN" additivity="false">
+			<AppenderRef ref="Info"/>
+		</Logger>
+        <Root level="WARN">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

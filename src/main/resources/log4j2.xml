@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <Properties>
+        <Property name="LOG_DIR">logs</Property>
+        <Property name="LOG_FILE">${date:yyyy-MM-dd_HH-mm-ss}</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ExtendedPatternLayout pattern="%d{HH:mm:ss} [%-15t] %highlight{%-5level: %c{1}} - %msg%n%highlight{%throwable}"/>
+        </Console>
+        <File name="TraceFileAppender" fileName="${LOG_DIR}/${LOG_FILE}.trace" append="false">
+            <ExtendedPatternLayout pattern="%d{HH:mm:ss} [%-15t] %-5level: %c{1} - %msg%n%throwable"/>
+        </File>
+        <File name="DebugFileAppender" fileName="${LOG_DIR}/${LOG_FILE}.debug" append="false">
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <ExtendedPatternLayout pattern="%d{HH:mm:ss} [%-15t] %-5level: %c{1} - %msg%n%throwable"/>
+        </File>
+        <File name="InfoFileAppender" fileName="${LOG_DIR}/${LOG_FILE}.info" append="false">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <ExtendedPatternLayout pattern="%d{HH:mm:ss} [%-15t] %-5level: %c{1} - %msg%n%throwable"/>
+        </File>
+    </Appenders>
+    <Loggers>
+
+        <Logger name="Direct" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TraceFileAppender"/>
+            <AppenderRef ref="DebugFileAppender"/>
+            <AppenderRef ref="InfoFileAppender"/>
+        </Logger>
+
+        <Logger name="de.rub.nds.modifiablevariable" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TraceFileAppender"/>
+            <AppenderRef ref="DebugFileAppender"/>
+            <AppenderRef ref="InfoFileAppender"/>
+        </Logger>
+
+        <Logger name="de.rub.nds.x509" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TraceFileAppender"/>
+            <AppenderRef ref="DebugFileAppender"/>
+            <AppenderRef ref="InfoFileAppender"/>
+        </Logger>
+
+        <Logger name="de.rub.nds.asn1" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TraceFileAppender"/>
+            <AppenderRef ref="DebugFileAppender"/>
+            <AppenderRef ref="InfoFileAppender"/>
+        </Logger>
+
+        <Logger name="de.rub.nds.dtlsproxy" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TraceFileAppender"/>
+            <AppenderRef ref="DebugFileAppender"/>
+            <AppenderRef ref="InfoFileAppender"/>
+        </Logger>
+
+        <Logger name="org.openqa.selenium" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TraceFileAppender"/>
+            <AppenderRef ref="DebugFileAppender"/>
+            <AppenderRef ref="InfoFileAppender"/>
+        </Logger>
+
+        <Logger name="de.rub.nds.tlsattacker.core.ice.parser" level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TraceFileAppender"/>
+            <AppenderRef ref="DebugFileAppender"/>
+            <AppenderRef ref="InfoFileAppender"/>
+        </Logger>
+
+        <Logger name="de.rub.nds.tlsattacker" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TraceFileAppender"/>
+            <AppenderRef ref="DebugFileAppender"/>
+            <AppenderRef ref="InfoFileAppender"/>
+        </Logger>
+
+        <!-- Disable logging for PcapDumper -->
+        <Logger name="org.pcap4j.core.PcapDumper" level="OFF" additivity="false"/>
+        <Logger name="org.pcap4j.util.PropertiesLoader" level="OFF" additivity="false"/>
+
+        <Root level="OFF">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
